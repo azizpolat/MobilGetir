@@ -10,6 +10,9 @@ import {
 import HomeNavigator from './HomeNavigator';
 import {TouchableOpacity} from 'react-native';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import UserNavigator from './UserNavigator';
+import SearchNavigator from './SearchNavigator';
+import SettingNavigator from './SettingNavigator';
 const Tab = createBottomTabNavigator();
 
 const CustomTabBarButton = ({children}) => {
@@ -46,7 +49,6 @@ const RootNavigator = () => {
         options={({route}) => {
           const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
           return {
-            // Eğer ProductDetails içindeysek Tab Bar'ı gizle
             tabBarStyle:
               routeName === 'ProductDetails' ? {display: 'none'} : {height: 80},
             tabBarIcon: ({color}) => <Home size="32" color={color} />,
@@ -55,7 +57,7 @@ const RootNavigator = () => {
       />
 
       <Tab.Screen
-        component={HomeNavigator}
+        component={SearchNavigator}
         name="Search"
         options={{
           tabBarIcon: ({color}) => <SearchNormal size="32" color={color} />,
@@ -71,7 +73,7 @@ const RootNavigator = () => {
       />
 
       <Tab.Screen
-        component={HomeNavigator}
+        component={UserNavigator}
         name="User"
         options={{
           tabBarIcon: ({color}) => <User size="32" color={color} />,
@@ -79,7 +81,7 @@ const RootNavigator = () => {
       />
 
       <Tab.Screen
-        component={HomeNavigator}
+        component={SettingNavigator}
         name="Gift"
         options={{
           tabBarIcon: ({color}) => <Gift size="32" color={color} />,
